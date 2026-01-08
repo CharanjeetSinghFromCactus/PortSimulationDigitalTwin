@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: b62e18bd99b35f14aa5bc325e7521090
+timeCreated: 1574050447
+licenseType: Store
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 199154
+  packageName: SCPlayerPro
+  packageVersion: 3.5.0
+  assetPath: Assets/SCPlayerPro/Resources/Shaders/SCNV12.shader
+  uploadId: 679933

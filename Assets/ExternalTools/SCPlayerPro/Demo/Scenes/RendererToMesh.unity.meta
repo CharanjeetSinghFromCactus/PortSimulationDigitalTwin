@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b394677d91a61874e9bd135857cfcd71
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 199154
+  packageName: SCPlayerPro
+  packageVersion: 3.5.0
+  assetPath: Assets/SCPlayerPro/Demo/Scenes/RendererToMesh.unity
+  uploadId: 679933

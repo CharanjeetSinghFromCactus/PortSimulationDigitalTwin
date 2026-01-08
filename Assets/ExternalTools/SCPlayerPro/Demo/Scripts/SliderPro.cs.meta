@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: edd412818f734d345aa19b7717fb3836
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 199154
+  packageName: SCPlayerPro
+  packageVersion: 3.5.0
+  assetPath: Assets/SCPlayerPro/Demo/Scripts/SliderPro.cs
+  uploadId: 679933

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b59b3da1202b1184da88d8794f96f40e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287445
+  packageName: Road Constructor
+  packageVersion: 1.8.2
+  assetPath: Assets/ExternalTools/PampelGames/Shared/Utility/PGMathUtility.cs
+  uploadId: 839750

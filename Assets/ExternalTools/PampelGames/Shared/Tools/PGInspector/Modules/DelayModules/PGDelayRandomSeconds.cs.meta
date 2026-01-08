@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: de612e61ae024331945a8b2e6d3710ee
+timeCreated: 1666538161
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287445
+  packageName: Road Constructor
+  packageVersion: 1.8.2
+  assetPath: Assets/ExternalTools/PampelGames/Shared/Tools/PGInspector/Modules/DelayModules/PGDelayRandomSeconds.cs
+  uploadId: 839750

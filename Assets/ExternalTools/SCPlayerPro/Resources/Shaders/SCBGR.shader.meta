@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 4baecfe97db106b49994948f7c32e07c
+timeCreated: 1590455197
+licenseType: Store
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 199154
+  packageName: SCPlayerPro
+  packageVersion: 3.5.0
+  assetPath: Assets/SCPlayerPro/Resources/Shaders/SCBGR.shader
+  uploadId: 679933

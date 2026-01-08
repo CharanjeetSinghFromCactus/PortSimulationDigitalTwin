@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: af613aab47bf29c4cabc1d4c4d6fa036
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 199154
+  packageName: SCPlayerPro
+  packageVersion: 3.5.0
+  assetPath: Assets/SCPlayerPro/License.txt
+  uploadId: 679933

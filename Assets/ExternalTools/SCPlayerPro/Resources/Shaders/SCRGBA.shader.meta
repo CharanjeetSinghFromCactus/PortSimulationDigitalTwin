@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 05bbe80962e689642a7022333ed1e364
+timeCreated: 1590455197
+licenseType: Store
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 199154
+  packageName: SCPlayerPro
+  packageVersion: 3.5.0
+  assetPath: Assets/SCPlayerPro/Resources/Shaders/SCRGBA.shader
+  uploadId: 679933

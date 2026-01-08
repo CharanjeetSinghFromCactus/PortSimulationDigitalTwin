@@ -1,0 +1,192 @@
+[
+  {
+    "From_To": "Ahmedabad - US",
+    "ETA": "20:00",
+    "BERTH": "Oritkari / 103",
+    "ETS": "15:00",
+    "AgentOfArrival": "Cactus Creatives",
+    "AgentOfDeparture": "Cactus Creatives",
+    "DetailsOfVessel": {
+      "Name": "Titanic",
+      "Type": "Container Ship",
+      "Length_m": 129.2,
+      "Width_m": 20.6,
+      "Nationality": "IN - India",
+      "Gross_t": 7545,
+      "Net_t": 3165,
+      "MaxDraught_m": 7.4,
+      "DeadWt_t": 7545
+    }
+  },
+  {
+    "From_To": "Mumbai - UK",
+    "ETA": "10:30",
+    "BERTH": "Dock 4 / 207",
+    "ETS": "05:15",
+    "AgentOfArrival": "Blue Wave Logistics",
+    "AgentOfDeparture": "Harbor Solutions",
+    "DetailsOfVessel": {
+      "Name": "Ocean Spirit",
+      "Type": "Cargo Ship",
+      "Length_m": 145.7,
+      "Width_m": 24.2,
+      "Nationality": "GB - United Kingdom",
+      "Gross_t": 9875,
+      "Net_t": 5420,
+      "MaxDraught_m": 8.1,
+      "DeadWt_t": 9800
+    }
+  },
+  {
+    "From_To": "Chennai - Singapore",
+    "ETA": "08:45",
+    "BERTH": "East Pier / 12",
+    "ETS": "18:20",
+    "AgentOfArrival": "Marina Global",
+    "AgentOfDeparture": "TradeLine Ventures",
+    "DetailsOfVessel": {
+      "Name": "Sea Voyager",
+      "Type": "Oil Tanker",
+      "Length_m": 172.4,
+      "Width_m": 28.5,
+      "Nationality": "SG - Singapore",
+      "Gross_t": 12200,
+      "Net_t": 6740,
+      "MaxDraught_m": 9.3,
+      "DeadWt_t": 11800
+    }
+  },
+  {
+    "From_To": "Kolkata - Japan",
+    "ETA": "22:10",
+    "BERTH": "Nishi Dock / 56",
+    "ETS": "06:45",
+    "AgentOfArrival": "Oceanic Trade Co.",
+    "AgentOfDeparture": "Rising Tide Exports",
+    "DetailsOfVessel": {
+      "Name": "Pacific Star",
+      "Type": "Bulk Carrier",
+      "Length_m": 188.9,
+      "Width_m": 30.1,
+      "Nationality": "JP - Japan",
+      "Gross_t": 13650,
+      "Net_t": 7030,
+      "MaxDraught_m": 9.9,
+      "DeadWt_t": 13500
+    }
+  },
+  {
+    "From_To": "Visakhapatnam - Australia",
+    "ETA": "12:15",
+    "BERTH": "Portside / 9A",
+    "ETS": "19:30",
+    "AgentOfArrival": "Harbor Connect Pvt. Ltd.",
+    "AgentOfDeparture": "Marine Express",
+    "DetailsOfVessel": {
+      "Name": "Coral Queen",
+      "Type": "Passenger Ship",
+      "Length_m": 210.5,
+      "Width_m": 35.0,
+      "Nationality": "AU - Australia",
+      "Gross_t": 15600,
+      "Net_t": 8120,
+      "MaxDraught_m": 10.2,
+      "DeadWt_t": 14900
+    }
+  },
+  {
+    "From_To": "Cochin - Dubai",
+    "ETA": "05:50",
+    "BERTH": "Al Maktoum / 34",
+    "ETS": "23:40",
+    "AgentOfArrival": "Emirates Trade Group",
+    "AgentOfDeparture": "SeaBridge Pvt. Ltd.",
+    "DetailsOfVessel": {
+      "Name": "Golden Pearl",
+      "Type": "Crude Oil Tanker",
+      "Length_m": 198.4,
+      "Width_m": 32.8,
+      "Nationality": "AE - UAE",
+      "Gross_t": 16890,
+      "Net_t": 9010,
+      "MaxDraught_m": 10.8,
+      "DeadWt_t": 16450
+    }
+  },
+  {
+    "From_To": "Surat - Malaysia",
+    "ETA": "14:25",
+    "BERTH": "Harbor Dock / 22",
+    "ETS": "07:50",
+    "AgentOfArrival": "Global Marine Lines",
+    "AgentOfDeparture": "Aqua Fleet Management",
+    "DetailsOfVessel": {
+      "Name": "Emerald Wave",
+      "Type": "General Cargo",
+      "Length_m": 134.7,
+      "Width_m": 22.1,
+      "Nationality": "MY - Malaysia",
+      "Gross_t": 8630,
+      "Net_t": 4790,
+      "MaxDraught_m": 8.5,
+      "DeadWt_t": 8500
+    }
+  },
+  {
+    "From_To": "Goa - Italy",
+    "ETA": "18:40",
+    "BERTH": "Central Bay / 67",
+    "ETS": "08:10",
+    "AgentOfArrival": "Poseidon Maritime",
+    "AgentOfDeparture": "Venice Shipping Co.",
+    "DetailsOfVessel": {
+      "Name": "Azure Wind",
+      "Type": "Reefer Vessel",
+      "Length_m": 155.3,
+      "Width_m": 26.9,
+      "Nationality": "IT - Italy",
+      "Gross_t": 11200,
+      "Net_t": 5870,
+      "MaxDraught_m": 9.0,
+      "DeadWt_t": 10850
+    }
+  },
+  {
+    "From_To": "Port Blair - Thailand",
+    "ETA": "09:15",
+    "BERTH": "Andaman Pier / 44",
+    "ETS": "16:55",
+    "AgentOfArrival": "Eastern Wave Marine",
+    "AgentOfDeparture": "ThaiOcean Lines",
+    "DetailsOfVessel": {
+      "Name": "Crystal Dawn",
+      "Type": "Container Ship",
+      "Length_m": 140.2,
+      "Width_m": 25.4,
+      "Nationality": "TH - Thailand",
+      "Gross_t": 9450,
+      "Net_t": 5230,
+      "MaxDraught_m": 8.2,
+      "DeadWt_t": 9400
+    }
+  },
+  {
+    "From_To": "Mangalore - South Africa",
+    "ETA": "07:30",
+    "BERTH": "Harbor South / 18B",
+    "ETS": "21:10",
+    "AgentOfArrival": "Southern Cross Shipping",
+    "AgentOfDeparture": "CapeStar Logistics",
+    "DetailsOfVessel": {
+      "Name": "Neptune Horizon",
+      "Type": "Heavy Lift Vessel",
+      "Length_m": 177.6,
+      "Width_m": 29.8,
+      "Nationality": "ZA - South Africa",
+      "Gross_t": 12900,
+      "Net_t": 6540,
+      "MaxDraught_m": 9.6,
+      "DeadWt_t": 12780
+    }
+  }
+]

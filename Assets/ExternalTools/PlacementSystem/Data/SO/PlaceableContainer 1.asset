@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f4d928245a13c542a254304c55a7ee2, type: 3}
+  m_Name: PlaceableContainer 1
+  m_EditorClassIdentifier: 
+  data:
+  - name: Building1
+    id: 0
+    size: {x: 2, y: 2}
+    placeablePrefab: {fileID: 808463997157540699, guid: c91f75ccbabb60548bbfb4b3ecf5d5c5, type: 3}
+  - name: Building2
+    id: 1
+    size: {x: 4, y: 2}
+    placeablePrefab: {fileID: 808463997157540699, guid: f83428f301597d644ba3ef8bf8066dad, type: 3}
+  - name: Building3
+    id: 2
+    size: {x: 2, y: 3}
+    placeablePrefab: {fileID: 808463997157540699, guid: e4b2c414bd659454ba7cfdacfc98a47b, type: 3}
+  - name: Crane1
+    id: 3
+    size: {x: 1, y: 1}
+    placeablePrefab: {fileID: 808463997157540699, guid: a8302c1427af87d41875e8eec214da58, type: 3}
+  - name: Crane2
+    id: 4
+    size: {x: 5, y: 2}
+    placeablePrefab: {fileID: 808463997157540699, guid: 46317e524279d3d47b30bc4139a59134, type: 3}
+  - name: Road1
+    id: 5
+    size: {x: 2, y: 1}
+    placeablePrefab: {fileID: 808463997157540699, guid: edbcce5d730fdd943a2fe52682ba7617, type: 3}
+  - name: Road3
+    id: 6
+    size: {x: 1, y: 2}
+    placeablePrefab: {fileID: 808463997157540699, guid: f249e3f358f298746a3fbb13dc814e8c, type: 3}

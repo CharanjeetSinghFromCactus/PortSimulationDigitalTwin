@@ -1,0 +1,2 @@
+[2026-01-07 17:37:14] INFO     Initialize SCCore 3.5.0
+[2026-01-07 17:37:53] INFO     Terminate SCCore

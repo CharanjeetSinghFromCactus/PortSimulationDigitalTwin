@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 368d28709cbc362418825bf86122592e
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 199154
+  packageName: SCPlayerPro
+  packageVersion: 3.5.0
+  assetPath: Assets/SCPlayerPro/Demo/Scenes/360VR.unity
+  uploadId: 679933

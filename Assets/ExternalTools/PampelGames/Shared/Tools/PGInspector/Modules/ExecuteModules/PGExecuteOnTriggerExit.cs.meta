@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 048160e23aad48a0afa3de8d6123bedf
+timeCreated: 1666800761
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287445
+  packageName: Road Constructor
+  packageVersion: 1.8.2
+  assetPath: Assets/ExternalTools/PampelGames/Shared/Tools/PGInspector/Modules/ExecuteModules/PGExecuteOnTriggerExit.cs
+  uploadId: 839750

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: c2717d3a48880e143ae135a206ca7bfa
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287445
+  packageName: Road Constructor
+  packageVersion: 1.8.2
+  assetPath: Assets/ExternalTools/PampelGames/Shared/Editor/EditorTools/PGEditorTween/Core/PGEditorTweenUpdate.cs
+  uploadId: 839750

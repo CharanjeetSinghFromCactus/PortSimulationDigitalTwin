@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 0e06990c8545475499267aae3882a9a6
+timeCreated: 1574050447
+licenseType: Store
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 199154
+  packageName: SCPlayerPro
+  packageVersion: 3.5.0
+  assetPath: Assets/SCPlayerPro/Resources/Shaders/SCXYUVX.shader
+  uploadId: 679933

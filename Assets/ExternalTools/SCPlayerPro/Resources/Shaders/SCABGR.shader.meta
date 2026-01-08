@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 9992cd506a88c09438ae86edf894e734
+timeCreated: 1590455197
+licenseType: Store
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 199154
+  packageName: SCPlayerPro
+  packageVersion: 3.5.0
+  assetPath: Assets/SCPlayerPro/Resources/Shaders/SCABGR.shader
+  uploadId: 679933

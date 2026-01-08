@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0dccd2febd6d7ff4cb2c4fae74b7815c
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 199154
+  packageName: SCPlayerPro
+  packageVersion: 3.5.0
+  assetPath: Assets/StreamingAssets/SCAssets/TestMusic.mp3
+  uploadId: 679933

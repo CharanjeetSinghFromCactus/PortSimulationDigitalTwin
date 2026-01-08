@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: ea95ed824fbaabc4d8fa424748feeeb8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287445
+  packageName: Road Constructor
+  packageVersion: 1.8.2
+  assetPath: Assets/ExternalTools/PampelGames/Shared.Construction/Scripts/Utility/AngleDistanceUtility.cs
+  uploadId: 839750

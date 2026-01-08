@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: be910729c1a0136478946105b3fd9fea
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287445
+  packageName: Road Constructor
+  packageVersion: 1.8.2
+  assetPath: Assets/ExternalTools/PampelGames/RoadConstructor/Scripts/Legacy/SplineWorldUtility.cs
+  uploadId: 839750

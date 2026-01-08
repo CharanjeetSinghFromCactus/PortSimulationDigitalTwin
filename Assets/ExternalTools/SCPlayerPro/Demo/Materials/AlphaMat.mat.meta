@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 40b47f8da4489754a800391fbd96c128
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 199154
+  packageName: SCPlayerPro
+  packageVersion: 3.5.0
+  assetPath: Assets/SCPlayerPro/Demo/Materials/AlphaMat.mat
+  uploadId: 679933

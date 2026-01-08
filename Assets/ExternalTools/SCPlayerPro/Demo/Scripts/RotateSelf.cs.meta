@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b3b579b6f8d80aa44808ebc9a028c0a9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 199154
+  packageName: SCPlayerPro
+  packageVersion: 3.5.0
+  assetPath: Assets/SCPlayerPro/Demo/Scripts/RotateSelf.cs
+  uploadId: 679933

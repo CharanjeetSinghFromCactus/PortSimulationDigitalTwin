@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 93a8bb2d21470d649b730eb2647dcb5d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4300000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 199154
+  packageName: SCPlayerPro
+  packageVersion: 3.5.0
+  assetPath: Assets/SCPlayerPro/Demo/Model/360vr.asset
+  uploadId: 679933
