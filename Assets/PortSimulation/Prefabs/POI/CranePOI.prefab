@@ -516,7 +516,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37dc48537dd4eb84b875437708bc7155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PortSimulation.POI.CranePOI
-  poiCanvasPopup: {fileID: 0}
   poiPopup: {fileID: 5148926810956764811}
   craneData:
     craneName: Crane

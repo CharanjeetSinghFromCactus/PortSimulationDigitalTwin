@@ -120,7 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0c7ea7d8f2748b4faeb6fcf266aec91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PortSimulation.POI.VehiclePoi
-  poiCanvasPopup: {fileID: 0}
   poiPopup: {fileID: 4569200670488686822}
   vehicleData:
     vehicleName: 
