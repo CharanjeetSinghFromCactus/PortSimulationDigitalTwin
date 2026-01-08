@@ -43,7 +43,7 @@ namespace PortSimulation.UI
 			{
 				poi.OnHide();
 			}
-			ViewController.Instance.ChangeScreen(ScreenName.HomeScreen);
+			ViewController.Instance.ChangeScreen(ScreenName.PlacementCategoryScreen);
 		}
 	}
 }

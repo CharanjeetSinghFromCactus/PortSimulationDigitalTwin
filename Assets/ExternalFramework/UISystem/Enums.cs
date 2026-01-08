@@ -12,7 +12,8 @@
         ShipPOIDataScreen,
         VehiclePOIDataScreen,
         RTSPPlayerScreen,
-        HomeScreen
+        PlacementCategoryScreen,
+        PlacementScreen
     }
 }
 public enum InputType

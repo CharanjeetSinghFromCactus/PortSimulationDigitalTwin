@@ -38,7 +38,7 @@ namespace PortSimulation.UI
 			{
 				poi.OnHide();
 			}
-			UISystem.ViewController.Instance.ChangeScreen(UISystem.ScreenName.HomeScreen);
+			UISystem.ViewController.Instance.ChangeScreen(UISystem.ScreenName.PlacementCategoryScreen);
 		}
 
 		public void SetVehicleData(VehicleData data)

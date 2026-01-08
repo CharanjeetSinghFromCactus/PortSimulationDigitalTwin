@@ -9,4 +9,9 @@ namespace PortSimulation
 	{
 		public const string canUsePanTool = "canUsePanTool";
 	}
+
+	public static class PropertyNameConstants
+	{
+		public const string PlacementCategoryNameProperty = "PlacementCategoryName";
+	}
 }
