@@ -1,13 +1,16 @@
 using System;
 using System.Collections;
 using DataBindingFramework;
+using PortSimulation.Managers;
+using PortSimulation.Tools;
+using ServiceLocatorFramework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
 namespace PortSimulation
 {
-    public class PanTool : MonoBehaviour
+    public class PanTool : MonoBehaviour, ITool
     {
         private Bounds panBounds;
         public BoxCollider bounds;
@@ -25,15 +28,26 @@ namespace PortSimulation
             canUsePanToolObserver = observerManager.GetOrCreateObserver<bool>(ObserverNameConstants.canUsePanTool);
             canUsePanToolObserver.Bind(this, CanUpdatePan, "Can Update Pan Observer");
             
-            panAction.action.Enable();
-            panAction.action.performed += OnPan;
-            panAction.action.canceled += OnPan;
+            if (panAction != null && panAction.action != null)
+            {
+                panAction.action.Enable();
+                panAction.action.performed += OnPan;
+                panAction.action.canceled += OnPan;
+            }
+            
+            // Register self with ToolManager
+            var toolManager = ServiceLocator.Current.Get<ToolManager>();
+            if (toolManager != null)
+            {
+                toolManager.RegisterTool(ToolNameConstants.PanToolName, this);
+            }
         }
         
 
         private void Start()
         {
-            panBounds = bounds.bounds;
+            if (bounds != null)
+                panBounds = bounds.bounds;
         }
 
         // private IEnumerator UpdatePan()
@@ -46,23 +60,47 @@ namespace PortSimulation
         //     yield return null;
         // }
 
-        private void Update()
+        // private void Update()
+        // {
+        //     if (canUpdatePan && canUsePanTool)
+        //     {
+        //         UpdatePanMovement();
+        //     }
+        // }
+        
+        public void UpdateTool()
         {
             if (canUpdatePan && canUsePanTool)
             {
                 UpdatePanMovement();
             }
         }
+
         private void OnDisable()
         {
-            canUsePanToolObserver.Unbind(CanUpdatePan);
-            observerManager.RemoveObserver(ObserverNameConstants.canUsePanTool);
-            panAction.action.performed -= OnPan;
-            panAction.action.canceled -= OnPan;
-            panAction.action.Disable();
+            if (canUsePanToolObserver != null)
+                canUsePanToolObserver.Unbind(CanUpdatePan);
+            if (observerManager != null)
+                observerManager.RemoveObserver(ObserverNameConstants.canUsePanTool);
+            
+            if (panAction != null && panAction.action != null)
+            {
+                panAction.action.performed -= OnPan;
+                panAction.action.canceled -= OnPan;
+                panAction.action.Disable();
+            }
+            
+            // Unregister self from ToolManager
+            var toolManager = ServiceLocator.Current.Get<ToolManager>();
+            if (toolManager != null)
+            {
+                toolManager.UnregisterTool(ToolNameConstants.PanToolName);
+            }
         }
         void UpdatePanMovement()
         {
+            if (camera == null) return;
+
             Vector3 cameraForward = camera.forward;
             cameraForward.y = 0;
             Quaternion lookRotation = Quaternion.LookRotation(cameraForward);
@@ -70,8 +108,11 @@ namespace PortSimulation
             Vector3 newPosition = transform.position + panMovement;
 
             // Clamp the new position within the defined bounds
-            newPosition.x = Mathf.Clamp(newPosition.x, panBounds.min.x, panBounds.max.x);
-            newPosition.z = Mathf.Clamp(newPosition.z, panBounds.min.z, panBounds.max.z);
+            if (bounds != null)
+            {
+                newPosition.x = Mathf.Clamp(newPosition.x, panBounds.min.x, panBounds.max.x);
+                newPosition.z = Mathf.Clamp(newPosition.z, panBounds.min.z, panBounds.max.z);
+            }
 
             transform.position = newPosition;
         }

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Large Grid Settings
   m_EditorClassIdentifier: 
   Key: Large Grid Settings
-  Width: 100
-  Height: 100
+  Width: 5000
+  Height: 5000
   GridSizeRatio: {x: 1, y: 1}
   AmountOfCellsX: 1000
   AmountOfCellsY: 1000
@@ -29,7 +29,8 @@ MonoBehaviour:
   HidePlacementCellsIfOutsideOfGrid: 1
   ShowOccupiedCells: 1
   GridCanvasEventCameraName: 
-  ChangeObjectMaterials: 1
+  UsePlaceableMaterial: 1
+  UseUnplaceableMaterial: 1
   ObjectPlaceableMaterial: {fileID: 2100000, guid: 7fb8be3249023ba41932317f6da47b0d, type: 2}
   ObjectUnPlaceableMaterial: {fileID: 2100000, guid: 447137d51a391c74fa67e1a5883f0520, type: 2}
   DefaultAlignment: 0

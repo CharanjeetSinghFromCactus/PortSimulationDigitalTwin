@@ -11,9 +11,9 @@ namespace PortSimulation.PlacementSystem
 	{
 		[field:SerializeField] public PlacementCategory[] PlacementCategories { get; private set; }
 
-		public IEnumerable<PlacementCategory> GetCategory(string categoryName)
+		public PlacementCategory GetCategory(string categoryName)
 		{
-			return Array.FindAll(PlacementCategories, x => x.CategoryName == categoryName);
+			return Array.Find(PlacementCategories, x => x.CategoryName == categoryName);
 		}
 	}
 }

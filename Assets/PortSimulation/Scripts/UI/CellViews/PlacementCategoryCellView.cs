@@ -1,6 +1,9 @@
+using DataBindingFramework;
 using EnhancedUI.EnhancedScroller;
 using PortSimulation.PlacementSystem;
 using TMPro;
+using UISystem;
+using Unity.Properties;
 using UnityEngine.UI;
 
 namespace PortSimulation.UI
@@ -14,7 +17,19 @@ namespace PortSimulation.UI
 		private PlacementCategory category;
 		[SerializeField] private Image categoryIcon;
 		[SerializeField] private TMP_Text categoryNameText;
-		
+		private IPropertyManager _propertyManager;
+		private Property<string> SetCurrentCategoryName;
+		private void OnEnable()
+		{
+			_propertyManager = ServiceLocatorFramework.ServiceLocator.Current.Get<IPropertyManager>();
+			SetCurrentCategoryName = _propertyManager.GetOrCreateProperty<string>(PropertyNameConstants.PlacementCategoryNameProperty);
+		}
+
+		private void OnDisable()
+		{
+			_propertyManager.RemoveProperty<string>(PropertyNameConstants.PlacementCategoryNameProperty);
+		}
+
 		public void SetData(PlacementCategory category)
 		{
 			this.category = category;
@@ -24,7 +39,12 @@ namespace PortSimulation.UI
 
 		public void OnClick()
 		{
-			Debug.Log($"CategoryName {category.CategoryName}");
+			Debug.Log($"CategoryName in Cell View {category.CategoryName}");
+			SetCurrentCategoryName.Value = category.CategoryName;
+			CoroutineExtension.ExecuteAfterFrame(this, () =>
+			{
+				UISystem.ViewController.Instance.ChangeScreen(ScreenName.PlacementObjectSelectionScreen);
+			});
 		}
 	}
 }

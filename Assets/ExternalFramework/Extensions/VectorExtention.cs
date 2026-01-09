@@ -157,6 +157,15 @@ public static class VectorExtention
         float z = UnityEngine.Random.Range(b.min.z, b.max.z);
         return new Vector3(x, y, z);
     }
+
+    public static Vector3 Clamp(this Vector3 v, Vector3 min, Vector3 max)
+    {
+        return new Vector3(
+            Mathf.Clamp(v.x, min.x, max.x),
+            Mathf.Clamp(v.y, min.y, max.y),
+            Mathf.Clamp(v.z, min.z, max.z)
+        );
+    }
     ///Interpolates between a and b by t without clamping
     ///the interpolant and makes sure the values interpolate
     ///correctly when they wrap aroud 360 degrees

@@ -827,7 +827,19 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: EASYROADS3D_PRO
+    Android: ENVIRO_3;ENVIRO_URP
+    EmbeddedLinux: ENVIRO_3;ENVIRO_URP
+    GameCoreXboxOne: ENVIRO_3;ENVIRO_URP
+    Nintendo Switch: ENVIRO_3;ENVIRO_URP
+    PS4: ENVIRO_3;ENVIRO_URP
+    PS5: ENVIRO_3;ENVIRO_URP
+    QNX: ENVIRO_3;ENVIRO_URP
+    Stadia: ENVIRO_3;ENVIRO_URP
+    Standalone: EASYROADS3D_PRO;ENVIRO_3;ENVIRO_URP
+    VisionOS: ENVIRO_3;ENVIRO_URP
+    WebGL: ENVIRO_3;ENVIRO_URP
+    XboxOne: ENVIRO_3;ENVIRO_URP
+    tvOS: ENVIRO_3;ENVIRO_URP
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

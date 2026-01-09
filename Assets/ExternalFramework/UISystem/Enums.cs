@@ -13,7 +13,8 @@
         VehiclePOIDataScreen,
         RTSPPlayerScreen,
         PlacementCategoryScreen,
-        PlacementScreen
+        PlacementObjectSelectionScreen,
+        PlacementPropertiesScreen
     }
 }
 public enum InputType
