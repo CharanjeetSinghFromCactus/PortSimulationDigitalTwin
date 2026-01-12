@@ -41,7 +41,6 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _ALPHATEST_ON
   - _DISABLE_SSR_TRANSPARENT
   - _OCCLUSION
   m_InvalidKeywords: []
@@ -51,7 +50,7 @@ Material:
   m_CustomRenderQueue: 2475
   stringTagMap:
     MotionVector: User
-    RenderType: TransparentCutout
+    RenderType: Opaque
   disabledShaderPasses:
   - MOTIONVECTORS
   - TransparentDepthPrepass
@@ -202,7 +201,6 @@ Material:
     - normalTexture_Rotation: {r: 0, g: 0, b: 0, a: 0}
     - occlusionTexture_Rotation: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!114 &6137610181989815054
 MonoBehaviour:
   m_ObjectHideFlags: 11
