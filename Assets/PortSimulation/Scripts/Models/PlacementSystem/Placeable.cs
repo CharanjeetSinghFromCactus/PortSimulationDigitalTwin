@@ -9,42 +9,67 @@ namespace PortSimulation.PlacementSystem
         public Transform Transform => transform;
 
         private int _overlapCount;
-        private Collider col;
-        private Rigidbody rb;
+        private Collider _collider;
+        private Rigidbody _rigidbody;
+        private PlaceableSelection _selection;
+
         private void Awake()
         {
-            col = GetComponent<Collider>();
-            col.isTrigger = true;
+            _collider = GetComponent<Collider>();
+            _collider.isTrigger = true;
 
-            rb = GetComponent<Rigidbody>() ?? gameObject.AddComponent<Rigidbody>();
-            rb.isKinematic = true;
-            rb.useGravity = false;
+            _rigidbody = GetComponent<Rigidbody>() ?? gameObject.AddComponent<Rigidbody>();
+            _rigidbody.isKinematic = true;
+            _rigidbody.useGravity = false;
+
+            _selection = GetComponent<PlaceableSelection>();
         }
 
-        public void BeginEdit() { }
-        public void EndEdit() { }
-        
+        #region Edit State
+
+        public void BeginEdit()
+        {
+            _selection?.OnSelect();
+        }
+
+        public void EndEdit()
+        {
+            _selection?.OnDeselect();
+        }
+
         public void DestroyPlaceable()
         {
-            Destroy(gameObject);   
+            Destroy(gameObject);
         }
+
+        #endregion
+
+        #region Collision Handling (Unity Side)
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.GetComponent<IPlaceable>() != null)
-                _overlapCount++;
+            if (other.GetComponent<IPlaceable>() == null)
+                return;
+
+            _overlapCount++;
+
+            // Forward collision state to visual/selection logic
+            _selection?.OnCollidingWithOtherModels();
+
+            Debug.Log($"[PlacementManager] Object {gameObject.name} is colliding with {other.gameObject.name}. Placement invalid.");
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.GetComponent<IPlaceable>() != null)
-                _overlapCount = Mathf.Max(0, _overlapCount - 1);
+            if (other.GetComponent<IPlaceable>() == null)
+                return;
+
+            _overlapCount = Mathf.Max(0, _overlapCount - 1);
+
+            // Forward collision cleared state
+            _selection?.OnCollisionCleared();
         }
 
-        public void UpdatePosition(Vector3 position)
-        {
-            transform.position = position;
-        }
-        
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DataBindingFramework;
+using PortSimulation.Data;
 using PortSimulation.Managers;
 using ServiceLocatorFramework;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace PortSimulation.PlacementSystem
         private DataBindingFramework.IObserver<string> setCurrentPlacemetTool;
         private ToolManager toolManager;
         IPlaceable target;
-        public PlacementToolHandler(MonoBehaviour monoBehaviour,Camera camera,LayerMask placementAreaMask,float maxRaycastDistance,float rotateSpeed,float scaleSpeed,float minScale,float maxScale)
+        public PlacementToolHandler(MonoBehaviour monoBehaviour, Camera camera, ToolConfig toolConfig)
         {
             _observerManager = ServiceLocator.Current.Get<IObserverManager>();
             _setTargetObserver = _observerManager.GetOrCreateObserver<IPlaceable>(ObserverNameConstants.SetPlacementTarget);
@@ -22,9 +23,9 @@ namespace PortSimulation.PlacementSystem
 
             _setTargetObserver.Bind(monoBehaviour, OnSetTarget);
 
-            panTool = new PanTool(camera, placementAreaMask, maxRaycastDistance);
-            rotateTool = new RotateTool(rotateSpeed);
-            ScaleTool = new ScaleTool(scaleSpeed, maxScale, minScale);
+            panTool = new MoveTool(camera, toolConfig.PlacementPanToolData.PlacementAreaMask, toolConfig.PlacementPanToolData.MaxRaycastDistance, toolConfig.PlacementPanToolData.LerpSpeed);
+            rotateTool = new RotateTool(toolConfig.PlacementRotateToolData.RotateSpeed);
+            ScaleTool = new ScaleTool(toolConfig.PlacementScaleToolData.Speed, toolConfig.PlacementScaleToolData.MaxScale, toolConfig.PlacementScaleToolData.MinScale);
 
             toolManager = ServiceLocator.Current.Get<ToolManager>();
             toolManager.RegisterTool(ToolNameConstants.PlacementPanToolName,panTool);

@@ -1,5 +1,6 @@
 ﻿using System;
 using DataBindingFramework;
+using PortSimulation.Data;
 using PortSimulation.Managers;
 using UISystem;
 using UnityEngine;
@@ -18,14 +19,18 @@ namespace PortSimulation.PlacementSystem
         [SerializeField] private PlacementDataContainer _container;
         [SerializeField] private GameObject previewPlacementContainer;
         [SerializeField] private GameObject finalPlacementContainer;
+        [SerializeField] private ToolConfig toolConfig;
         
         private readonly PlacementContext _context = new PlacementContext();
         private PlacementToolHandler _toolHandler;
-        
+        private PlacementPersistenceManager _persistenceManager;
         IObserverManager _observerManager;
+        private IPropertyManager _iPropertyManager;
         private DataBindingFramework.IObserver<bool> canFinalizePlacement;
         private DataBindingFramework.IObserver<PlacementItemData> onPlacementItemClick;
         private DataBindingFramework.IObserver<IPlaceable> setPlacementTarget;
+        
+        private int currentCategoryID = -1;
         
         private void Awake()
         {
@@ -35,6 +40,7 @@ namespace PortSimulation.PlacementSystem
         private void OnEnable()
         {
             _observerManager = ServiceLocatorFramework.ServiceLocator.Current.Get<IObserverManager>();
+            _iPropertyManager = ServiceLocatorFramework.ServiceLocator.Current.Get<IPropertyManager>();
             canFinalizePlacement = _observerManager.GetOrCreateObserver<bool>(ObserverNameConstants.CanPlacePlaceableObject);
             canFinalizePlacement.Bind(this, OnCanFinalizePlacement);
             
@@ -46,11 +52,16 @@ namespace PortSimulation.PlacementSystem
 
         private void Start()
         {
+            if (_persistenceManager == null)
+            {
+                _persistenceManager = new PlacementPersistenceManager(_container,finalPlacementContainer.transform);
+            }
             
+            _persistenceManager.Load();
             // Initialize ToolHandler here to ensure ServiceLocator is ready
             if (_toolHandler == null)
             {
-                _toolHandler = new PlacementToolHandler(this, mainCamera, placementLayer,  1000f, 250f, 0.5f, 0.1f, 20f);
+                _toolHandler = new PlacementToolHandler(this, mainCamera, toolConfig);
             }
         }
 
@@ -105,7 +116,8 @@ namespace PortSimulation.PlacementSystem
                     spawnPosition.y = 0; // Assuming ground is at y=0
                 }
 
-                Spawn(itemData.ObjectToPlace, spawnPosition, spawnRotation);
+                currentCategoryID = _iPropertyManager.GetOrCreateProperty<int>(PropertyNameConstants.PlacementCategoryNameProperty).Value;
+                Spawn(itemData, spawnPosition, spawnRotation);
             }
         }
 
@@ -130,20 +142,26 @@ namespace PortSimulation.PlacementSystem
 
         // ===== PUBLIC API =====
 
-        public void Spawn(GameObject prefab, Vector3? position = null, Quaternion? rotation = null)
+        public void Spawn(PlacementItemData data, Vector3? position = null, Quaternion? rotation = null)
         {
             Vector3 spawnPos = position ?? Vector3.zero;
             Quaternion spawnRot = rotation ?? Quaternion.identity;
-
-            GameObject go = Instantiate(prefab, spawnPos, spawnRot);
+            GameObject go = Instantiate(data.ObjectToPlace, spawnPos, spawnRot);
             if (previewPlacementContainer != null)
             {
                 go.transform.SetParent(previewPlacementContainer.transform);
             }
             IPlaceable placeable = go.GetComponent<IPlaceable>();
             UISystem.ViewController.Instance.ChangeScreen(ScreenName.PlacementPropertiesScreen);
+            PlacementIdentifier identifier = go.GetComponent<PlacementIdentifier>();
+            if (identifier != null)
+            {
+                identifier.CategoryId = currentCategoryID;
+                identifier.Guid = Guid.NewGuid().ToString();
+                identifier.ItemId = data.ItemId;
+            }
             _context.SetPlaceable(placeable);
-            
+            _persistenceManager.RegisterObject(placeable);
             // Set the active tool target to the newly spawned object
             setPlacementTarget.Notify(placeable);
         }
@@ -151,9 +169,11 @@ namespace PortSimulation.PlacementSystem
         public void CancelSpawn()
         {
             Debug.Log("Cancel Placement");
+            _persistenceManager.UnregisterObject(_context.CurrentPlaceable);
             _context.CancelPlacement();
             setPlacementTarget.Notify(null);
             UISystem.ViewController.Instance.ChangeScreen(ScreenName.PlacementObjectSelectionScreen);
+            _persistenceManager.Save();
         }
 
         public void ConfirmPlacement()
@@ -173,10 +193,15 @@ namespace PortSimulation.PlacementSystem
             {
                 _context.CurrentPlaceable.Transform.SetParent(finalPlacementContainer.transform);
             }
-
+            _persistenceManager.Save();
             _context.Clear();
             setPlacementTarget.Notify(null);
             UISystem.ViewController.Instance.ChangeScreen(ScreenName.PlacementObjectSelectionScreen);
+        }
+
+        public void ReportCollision(IPlaceable placeable, Collider other)
+        {
+            Debug.Log($"[PlacementManager] Object {placeable.Transform.name} is colliding with {other.gameObject.name}. Placement invalid.");
         }
         
     }

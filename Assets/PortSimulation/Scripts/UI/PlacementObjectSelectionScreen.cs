@@ -13,16 +13,16 @@ namespace PortSimulation.UI
         [SerializeField] private EnhancedScroller scroller;
         [SerializeField] private PlacementItemCellView placementCategoryCellViewPrefab;
         [SerializeField] private PlacementDataContainer placementDataContainer;
-        private string selectedCategoryName;
+        private int selectedCategoryID;
 
         private IPropertyManager _propertyManager;
-        private Property<string> GetCurrentCategoryName;
+        private Property<int> GetCurrentCategoryName;
 
         private PlacementCategory _category;
         private void OnEnable()
         {
             _propertyManager = ServiceLocatorFramework.ServiceLocator.Current.Get<IPropertyManager>();
-            GetCurrentCategoryName = _propertyManager.GetOrCreateProperty<string>(PropertyNameConstants.PlacementCategoryNameProperty);
+            GetCurrentCategoryName = _propertyManager.GetOrCreateProperty<int>(PropertyNameConstants.PlacementCategoryNameProperty);
             GetCurrentCategoryName.Bind(this,GetSelectedCategory);
         }
 
@@ -65,15 +65,15 @@ namespace PortSimulation.UI
             UISystem.ViewController.Instance.ChangeScreen(ScreenName.PlacementCategoryScreen);
         }
 
-        private void GetSelectedCategory(string categoryName)
+        private void GetSelectedCategory(int categoryID)
         {
-            this.selectedCategoryName = categoryName;
+            this.selectedCategoryID = categoryID;
             CoroutineExtension.ExecuteAfterFrame(this, () =>
             {
-                _category = placementDataContainer.GetCategory(categoryName);
+                _category = placementDataContainer.GetCategory(categoryID);
                 scroller.ReloadData();
             });
-            Debug.Log($"CategoryName in Placement Screen {categoryName}");
+            Debug.Log($"CategoryName in Placement Screen {categoryID}");
         }
     }
 }

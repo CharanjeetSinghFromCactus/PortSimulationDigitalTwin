@@ -18,11 +18,11 @@ namespace PortSimulation.UI
 		[SerializeField] private Image categoryIcon;
 		[SerializeField] private TMP_Text categoryNameText;
 		private IPropertyManager _propertyManager;
-		private Property<string> SetCurrentCategoryName;
+		private Property<int> SetCurrentCategoryName;
 		private void OnEnable()
 		{
 			_propertyManager = ServiceLocatorFramework.ServiceLocator.Current.Get<IPropertyManager>();
-			SetCurrentCategoryName = _propertyManager.GetOrCreateProperty<string>(PropertyNameConstants.PlacementCategoryNameProperty);
+			SetCurrentCategoryName = _propertyManager.GetOrCreateProperty<int>(PropertyNameConstants.PlacementCategoryNameProperty);
 		}
 
 		private void OnDisable()
@@ -40,7 +40,7 @@ namespace PortSimulation.UI
 		public void OnClick()
 		{
 			Debug.Log($"CategoryName in Cell View {category.CategoryName}");
-			SetCurrentCategoryName.Value = category.CategoryName;
+			SetCurrentCategoryName.Value = category.CategoryId;
 			CoroutineExtension.ExecuteAfterFrame(this, () =>
 			{
 				UISystem.ViewController.Instance.ChangeScreen(ScreenName.PlacementObjectSelectionScreen);

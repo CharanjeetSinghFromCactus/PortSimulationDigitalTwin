@@ -26,4 +26,9 @@ namespace PortSimulation
 	{
 		public const string PlacementCategoryNameProperty = "PlacementCategoryName";
 	}
+
+	public static class PlacementPersistantConstant
+	{
+		public const string placementDataFileName = "PlacementData.dat";
+	}
 }

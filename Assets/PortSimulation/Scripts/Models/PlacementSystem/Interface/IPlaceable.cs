@@ -1,6 +1,6 @@
 ﻿namespace PortSimulation.PlacementSystem
 {
-    public interface IPlaceable : IPositionUpdatable
+    public interface IPlaceable
     {
         bool IsValidPlacement { get; }
         void BeginEdit();

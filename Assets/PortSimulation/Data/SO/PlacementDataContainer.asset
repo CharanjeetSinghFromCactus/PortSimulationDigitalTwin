@@ -13,42 +13,64 @@ MonoBehaviour:
   m_Name: PlacementDataContainer
   m_EditorClassIdentifier: Assembly-CSharp::PortSimulation.PlacementSystem.PlacementDataContainer
   <PlacementCategories>k__BackingField:
-  - <CategoryName>k__BackingField: Crane
+  - <CategoryId>k__BackingField: 0
+    <CategoryName>k__BackingField: Crane
     <Data>k__BackingField:
-    - <ObjectToPlace>k__BackingField: {fileID: 808463997157540699, guid: a8302c1427af87d41875e8eec214da58, type: 3}
+    - <ItemId>k__BackingField: 0
+      <CategoryId>k__BackingField: 0
+      <ObjectToPlace>k__BackingField: {fileID: 808463997157540699, guid: a8302c1427af87d41875e8eec214da58, type: 3}
       <PlaceableName>k__BackingField: 1
       <PlaceableIcon>k__BackingField: {fileID: 21300000, guid: f79555118826c1e47abdd47798d18edc, type: 3}
-    - <ObjectToPlace>k__BackingField: {fileID: 808463997157540699, guid: 46317e524279d3d47b30bc4139a59134, type: 3}
+    - <ItemId>k__BackingField: 1
+      <CategoryId>k__BackingField: 0
+      <ObjectToPlace>k__BackingField: {fileID: 808463997157540699, guid: 46317e524279d3d47b30bc4139a59134, type: 3}
       <PlaceableName>k__BackingField: 2
       <PlaceableIcon>k__BackingField: {fileID: 21300000, guid: ad6dbc0f5e1ebaa40962783cea9e4750, type: 3}
     <CategoryIcon>k__BackingField: {fileID: 21300000, guid: fb06402a72108844f8793efcae1b4ba1, type: 3}
-  - <CategoryName>k__BackingField: Buildings
+  - <CategoryId>k__BackingField: 1
+    <CategoryName>k__BackingField: Buildings
     <Data>k__BackingField:
-    - <ObjectToPlace>k__BackingField: {fileID: 808463997157540699, guid: c91f75ccbabb60548bbfb4b3ecf5d5c5, type: 3}
+    - <ItemId>k__BackingField: 0
+      <CategoryId>k__BackingField: 1
+      <ObjectToPlace>k__BackingField: {fileID: 808463997157540699, guid: c91f75ccbabb60548bbfb4b3ecf5d5c5, type: 3}
       <PlaceableName>k__BackingField: 1
       <PlaceableIcon>k__BackingField: {fileID: 21300000, guid: 2f4556e6384c5f14f84bcb03f8323e1c, type: 3}
-    - <ObjectToPlace>k__BackingField: {fileID: 808463997157540699, guid: f83428f301597d644ba3ef8bf8066dad, type: 3}
+    - <ItemId>k__BackingField: 1
+      <CategoryId>k__BackingField: 1
+      <ObjectToPlace>k__BackingField: {fileID: 808463997157540699, guid: f83428f301597d644ba3ef8bf8066dad, type: 3}
       <PlaceableName>k__BackingField: 2
       <PlaceableIcon>k__BackingField: {fileID: 21300000, guid: 561c2d340cc10ba44a610e2eee4ab1d9, type: 3}
-    - <ObjectToPlace>k__BackingField: {fileID: 808463997157540699, guid: e4b2c414bd659454ba7cfdacfc98a47b, type: 3}
+    - <ItemId>k__BackingField: 2
+      <CategoryId>k__BackingField: 1
+      <ObjectToPlace>k__BackingField: {fileID: 808463997157540699, guid: e4b2c414bd659454ba7cfdacfc98a47b, type: 3}
       <PlaceableName>k__BackingField: 3
       <PlaceableIcon>k__BackingField: {fileID: 21300000, guid: 7bf883bfba485bf4e9b138a810d9764a, type: 3}
     <CategoryIcon>k__BackingField: {fileID: 21300000, guid: 2a8e637f8c2a00240bcce42153f76565, type: 3}
-  - <CategoryName>k__BackingField: Ships
+  - <CategoryId>k__BackingField: 2
+    <CategoryName>k__BackingField: Ships
     <Data>k__BackingField:
-    - <ObjectToPlace>k__BackingField: {fileID: 7253653282577601409, guid: 4d568315b0b960c47acd22160de3ee31, type: 3}
+    - <ItemId>k__BackingField: 0
+      <CategoryId>k__BackingField: 2
+      <ObjectToPlace>k__BackingField: {fileID: 7253653282577601409, guid: 4d568315b0b960c47acd22160de3ee31, type: 3}
       <PlaceableName>k__BackingField: 1
       <PlaceableIcon>k__BackingField: {fileID: 21300000, guid: 240b49e9968e0254a9cf8f3ead3c4c09, type: 3}
-    - <ObjectToPlace>k__BackingField: {fileID: 7602516363217290931, guid: c9f3978b77e66a046be77800c0f437fd, type: 3}
+    - <ItemId>k__BackingField: 1
+      <CategoryId>k__BackingField: 2
+      <ObjectToPlace>k__BackingField: {fileID: 7602516363217290931, guid: c9f3978b77e66a046be77800c0f437fd, type: 3}
       <PlaceableName>k__BackingField: 2
       <PlaceableIcon>k__BackingField: {fileID: 21300000, guid: 3f1916d1278aa774ca4bcc01ea77c7db, type: 3}
-    - <ObjectToPlace>k__BackingField: {fileID: 7602516363217290931, guid: fd287caecbdc7834eb1f2406e149e663, type: 3}
+    - <ItemId>k__BackingField: 2
+      <CategoryId>k__BackingField: 2
+      <ObjectToPlace>k__BackingField: {fileID: 7602516363217290931, guid: fd287caecbdc7834eb1f2406e149e663, type: 3}
       <PlaceableName>k__BackingField: 3
       <PlaceableIcon>k__BackingField: {fileID: 21300000, guid: d63bdc5d54c91f64896f35dbd7f45305, type: 3}
-    - <ObjectToPlace>k__BackingField: {fileID: 7602516363217290931, guid: 64fc9211a22aae844a31c4e08ad5ed38, type: 3}
+    - <ItemId>k__BackingField: 3
+      <CategoryId>k__BackingField: 2
+      <ObjectToPlace>k__BackingField: {fileID: 7602516363217290931, guid: 64fc9211a22aae844a31c4e08ad5ed38, type: 3}
       <PlaceableName>k__BackingField: 3
       <PlaceableIcon>k__BackingField: {fileID: 21300000, guid: b71d036530a3b1e44bb963c23ae64b6e, type: 3}
     <CategoryIcon>k__BackingField: {fileID: 21300000, guid: c9db103a44a52004c87cc8cd0142a27a, type: 3}
-  - <CategoryName>k__BackingField: Vehicles
+  - <CategoryId>k__BackingField: 3
+    <CategoryName>k__BackingField: Vehicles
     <Data>k__BackingField: []
     <CategoryIcon>k__BackingField: {fileID: 21300000, guid: 3c596629a281ad446b5050ae2b5ba390, type: 3}
