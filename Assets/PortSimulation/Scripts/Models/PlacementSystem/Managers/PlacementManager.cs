@@ -20,7 +20,7 @@ namespace PortSimulation.PlacementSystem
         [SerializeField] private GameObject previewPlacementContainer;
         [SerializeField] private GameObject finalPlacementContainer;
         [SerializeField] private ToolConfig toolConfig;
-        
+
         private readonly PlacementContext _context = new PlacementContext();
         private PlacementToolHandler _toolHandler;
         private PlacementPersistenceManager _persistenceManager;
@@ -29,9 +29,10 @@ namespace PortSimulation.PlacementSystem
         private DataBindingFramework.IObserver<bool> canFinalizePlacement;
         private DataBindingFramework.IObserver<PlacementItemData> onPlacementItemClick;
         private DataBindingFramework.IObserver<IPlaceable> setPlacementTarget;
-        
+        private DataBindingFramework.IObserver<bool> deleteObject;
+
         private int currentCategoryID = -1;
-        
+
         private void Awake()
         {
             Instance = this;
@@ -43,20 +44,23 @@ namespace PortSimulation.PlacementSystem
             _iPropertyManager = ServiceLocatorFramework.ServiceLocator.Current.Get<IPropertyManager>();
             canFinalizePlacement = _observerManager.GetOrCreateObserver<bool>(ObserverNameConstants.CanPlacePlaceableObject);
             canFinalizePlacement.Bind(this, OnCanFinalizePlacement);
-            
+
             onPlacementItemClick = _observerManager.GetOrCreateObserver<PlacementItemData>(ObserverNameConstants.OnPlacementItemClick);
             onPlacementItemClick.Bind(this, OnPlacementItemClick);
-            
+
             setPlacementTarget = _observerManager.GetOrCreateObserver<IPlaceable>(ObserverNameConstants.SetPlacementTarget);
+
+            deleteObject = _observerManager.GetOrCreateObserver<bool>(ObserverNameConstants.DeleteObject);
+            deleteObject.Bind(this, OnDeleteObject);
         }
 
         private void Start()
         {
             if (_persistenceManager == null)
             {
-                _persistenceManager = new PlacementPersistenceManager(_container,finalPlacementContainer.transform);
+                _persistenceManager = new PlacementPersistenceManager(_container, finalPlacementContainer.transform);
             }
-            
+
             _persistenceManager.Load();
             // Initialize ToolHandler here to ensure ServiceLocator is ready
             if (_toolHandler == null)
@@ -81,7 +85,10 @@ namespace PortSimulation.PlacementSystem
             onPlacementItemClick.Unbind(OnPlacementItemClick);
             _observerManager.RemoveObserver(ObserverNameConstants.CanPlacePlaceableObject);
             _observerManager.RemoveObserver(ObserverNameConstants.OnPlacementItemClick);
+            _observerManager.RemoveObserver(ObserverNameConstants.OnPlacementItemClick);
             _observerManager.RemoveObserver(ObserverNameConstants.SetPlacementTarget);
+            _observerManager.RemoveObserver(ObserverNameConstants.DeleteObject);
+            deleteObject.Unbind(OnDeleteObject);
         }
 
         private void OnCanFinalizePlacement(bool obj)
@@ -104,7 +111,7 @@ namespace PortSimulation.PlacementSystem
                 Quaternion spawnRotation = Quaternion.identity;
 
                 // Raycast from camera center to find spawn point
-                Ray ray = new Ray(mainCamera.transform.position,mainCamera.transform.forward);
+                Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
                 if (Physics.Raycast(ray, out RaycastHit hit, 1000f, placementLayer))
                 {
                     spawnPosition = hit.point;
@@ -130,7 +137,7 @@ namespace PortSimulation.PlacementSystem
                 if (placeable != null)
                 {
                     ViewController.Instance.ChangeScreen(ScreenName.PlacementPropertiesScreen);
-                    _context.SetPlaceable(placeable);
+                    _context.SetPlaceable(placeable, false);
                     if (previewPlacementContainer != null)
                     {
                         placeable.Transform.SetParent(previewPlacementContainer.transform);
@@ -160,7 +167,7 @@ namespace PortSimulation.PlacementSystem
                 identifier.Guid = Guid.NewGuid().ToString();
                 identifier.ItemId = data.ItemId;
             }
-            _context.SetPlaceable(placeable);
+            _context.SetPlaceable(placeable, true);
             _persistenceManager.RegisterObject(placeable);
             // Set the active tool target to the newly spawned object
             setPlacementTarget.Notify(placeable);
@@ -169,7 +176,11 @@ namespace PortSimulation.PlacementSystem
         public void CancelSpawn()
         {
             Debug.Log("Cancel Placement");
-            _persistenceManager.UnregisterObject(_context.CurrentPlaceable);
+            ServiceLocatorFramework.ServiceLocator.Current.Get<ToolManager>().ActivateTool(ToolNameConstants.PanToolName);
+            if (_context.IsNewPlacement)
+            {
+                _persistenceManager.UnregisterObject(_context.CurrentPlaceable);
+            }
             _context.CancelPlacement();
             setPlacementTarget.Notify(null);
             UISystem.ViewController.Instance.ChangeScreen(ScreenName.PlacementObjectSelectionScreen);
@@ -203,6 +214,19 @@ namespace PortSimulation.PlacementSystem
         {
             Debug.Log($"[PlacementManager] Object {placeable.Transform.name} is colliding with {other.gameObject.name}. Placement invalid.");
         }
-        
+
+        private void OnDeleteObject(bool obj)
+        {
+            if (_context.CurrentPlaceable != null)
+            {
+                _persistenceManager.UnregisterObject(_context.CurrentPlaceable);
+                _context.DeletePlacement();
+                setPlacementTarget.Notify(null);
+                ServiceLocatorFramework.ServiceLocator.Current.Get<ToolManager>().ActivateTool(ToolNameConstants.PanToolName);
+                UISystem.ViewController.Instance.ChangeScreen(ScreenName.PlacementObjectSelectionScreen);
+                _persistenceManager.Save();
+            }
+        }
+
     }
 }

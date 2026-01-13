@@ -9,17 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5a88dfc42d591448a58a4c760106f56, type: 3}
+  m_Script: {fileID: 11500000, guid: 023f6176e14ac154984ab52f32ecff9a, type: 3}
   m_Name: RoadSystemSettings
   m_EditorClassIdentifier: Barmetler.RoadSystem.Editor::Barmetler.RoadSystem.Settings.RoadSystemSettings
-  roadSettings:
-    drawBoundingBoxes: 0
-    showRoadDirectionButtons: 0
-    useRayCast: 1
-    copyHitNormal: 0
-    newRoadPrefab: {fileID: 0}
-  intersectionSettings:
-    newIntersectionPrefab: {fileID: 0}
-  drawNavigatorDebug: 0
-  drawNavigatorDebugPoints: 0
-  autoCalculateNavigator: 0

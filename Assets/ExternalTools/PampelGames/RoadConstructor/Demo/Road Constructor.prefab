@@ -47,10 +47,11 @@ MonoBehaviour:
   _DefaultReferences: {fileID: 11400000, guid: d83e0dccd59fd804f8488fd641ce85d0, type: 2}
   _RoadSet: {fileID: 11400000, guid: 85fa9336e40676a499e4ef278a02a361, type: 2}
   componentSettings:
+    integrationActive: 1
+    integrationDetectOverlap: 1
     resolution: 5
     detailResolution: 15
     smartReduce: 1
-    undoStorageSize: 5
     addCollider: 0
     addColliderLayer: 0
     roadTag: Untagged
@@ -63,7 +64,9 @@ MonoBehaviour:
     snapDistance: 1
     snapHeight: 2
     snapAngleIntersection: 0
-    snapAngleRoad: 0
+    snapTrack: 1
+    snapTrackMaxLength: 2
+    snapTrackMinAngle: 30
     minAngleIntersection: 45
     distanceRatioAngleCurve:
       serializedVersion: 2
@@ -89,15 +92,22 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    roadLengthUV: 1
+    splineLengthUV: 1
     tangentLength: 0.5
-    sideLaneTangentLength: 0.75
     intersectionDistance: 2
-    connections: 1
+    alignConnections: 1
+    directConnections: 0
     roadEnd: 0
+    randomSeed: 0
+    seed: 0
+    validateHeight: 1
+    validateOverlap: 1
     roadLength: {x: 5, y: 10000}
     minOverlapDistance: 1
     maxCurvature: 110
+    undoStorageSize: 5
+    undoResetsTerrain: 1
+    demolishResetsTerrain: 1
     groundLayers:
       serializedVersion: 2
       m_Bits: 1
@@ -108,20 +118,28 @@ MonoBehaviour:
     maxSlope: 30
     smoothSlope: 0
     terrainSettings: 0
-    terrain: {fileID: 0}
+    terrains: []
     removeDetails: 1
     removeTrees: 1
     levelHeight: 1
     slopeTextureIndex: 2
+    slopeTextureName: n.a.
     slopeTextureStrength: 0.75
     slopeSmooth: 1
     addTrafficComponent: 0
     updateWaypoints: 1
     waypointDistance: {x: 2, y: 4}
     waypointGizmos: 0
+    waypointGizmosColor: 0
     waypointGizmoSize: 1
     waypointConnectionsOnly: 0
-    waypointColorCar: {r: 0, g: 0, b: 1, a: 1}
-    waypointColorPedestrian: {r: 0, g: 1, b: 1, a: 1}
+    poolEnabled: 1
+    poolSizeObjects: 10
+    poolSizeSpawns: 10
+    poolSizeMeshes: 10
+  integrations: []
   _editorDisplay: 0
   _editorActivePartType: 0
+  roadPreviewLength: 25
+  roadPreviewSpawnObjects: 1
+  roadPreviewElevated: 0

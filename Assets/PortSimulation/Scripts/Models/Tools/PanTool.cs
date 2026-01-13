@@ -34,13 +34,6 @@ namespace PortSimulation
                 panAction.action.performed += OnPan;
                 panAction.action.canceled += OnPan;
             }
-            
-            // Register self with ToolManager
-            var toolManager = ServiceLocator.Current.Get<ToolManager>();
-            if (toolManager != null)
-            {
-                toolManager.RegisterTool(ToolNameConstants.PanToolName, this);
-            }
         }
         
 
@@ -48,25 +41,14 @@ namespace PortSimulation
         {
             if (bounds != null)
                 panBounds = bounds.bounds;
+            // Register self with ToolManager
+            var toolManager = ServiceLocator.Current.Get<ToolManager>();
+            if (toolManager != null)
+            {
+                toolManager.RegisterTool(ToolNameConstants.PanToolName, this,true);
+            }
         }
-
-        // private IEnumerator UpdatePan()
-        // {
-        //     while (canUpdatePan)
-        //     {
-        //         UpdatePanMovement();
-        //         yield return null;
-        //     }
-        //     yield return null;
-        // }
-
-        // private void Update()
-        // {
-        //     if (canUpdatePan && canUsePanTool)
-        //     {
-        //         UpdatePanMovement();
-        //     }
-        // }
+        
         
         public void UpdateTool()
         {

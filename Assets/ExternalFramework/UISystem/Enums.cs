@@ -14,7 +14,9 @@
         RTSPPlayerScreen,
         PlacementCategoryScreen,
         PlacementObjectSelectionScreen,
-        PlacementPropertiesScreen
+        PlacementPropertiesScreen,
+        RoadSelectionScreen,
+        HomeScreen
     }
 }
 public enum InputType
