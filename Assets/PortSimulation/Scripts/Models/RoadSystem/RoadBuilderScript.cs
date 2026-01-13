@@ -2,6 +2,8 @@ using PampelGames.RoadConstructor;
 using PampelGames.Shared.Utility;
 using UnityEngine;
 using PortSimulation.RoadSystem.Data;
+using DataBindingFramework;
+using ServiceLocatorFramework;
 
 namespace PortSimulation.RoadSystem
 {
@@ -10,14 +12,41 @@ namespace PortSimulation.RoadSystem
         private Vector3 pointerPosition;
         private Vector3 lastPointerPosition;
 
+        private IObserver<bool> canBuildRoadObserver;
+
+        private void Start()
+        {
+            var observerManager = ServiceLocatorFramework.ServiceLocator.Current.Get<DataBindingFramework.IObserverManager>();
+            canBuildRoadObserver = observerManager.GetOrCreateObserver<bool>(ObserverNameConstants.CanBuildRoad);
+
+            if (roadConstructor != null && roadConstructor._RoadSet != null)
+            {
+                foreach (var road in roadConstructor._RoadSet.roads)
+                {
+                    Debug.Log($"Available Road: {road.roadName}, Category: {road.category}");
+                }
+            }
+        }
+
         private void Awake()
         {
             InitializePointer();
             builderRoadType = BuilderRoadType.Road;
+
+            // Fix: Register existing roads in the scene
+            if (registerSceneObjects)
+                roadConstructor.RegisterSceneObjects();
         }
 
         public void HandleUpdate(Ray ray, bool isMousePressed, bool isShiftPressed, bool isCtrlPressed)
         {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                StopBuilding();
+                canBuildRoadObserver?.Notify(false);
+                return;
+            }
+
             if (roadConstructor == null) return;
 
             // Destroy display objects from previous frames to prevent buildup
@@ -26,7 +55,29 @@ namespace PortSimulation.RoadSystem
             if (!Physics.Raycast(ray, out var hit))
             {
                 SetPointerActive(false);
+                SetPointerDemolishActive(false);
                 return;
+            }
+
+            // Demolish Logic
+            SetPointerDemolishActive(isDemolishActive);
+            if (isDemolishActive)
+            {
+                var radius = GetDefaultRadius();
+                pointerDemolishPosition = SnapPointerDemolish(radius, hit.point, hit.normal);
+
+                if (isMousePressed)
+                {
+                    roadConstructor.Demolish(pointerDemolishPosition, radius);
+                }
+                else
+                {
+                    // Visual representation
+                    roadConstructor.DisplayDemolishObjects(pointerDemolishPosition, radius);
+                }
+
+                SetPointerActive(false); // Hide normal pointer when demolishing
+                return; // consistent with demo logic, don't build when demolishing
             }
 
             pointerPosition = SnapPointer(hit.point);
@@ -77,7 +128,24 @@ namespace PortSimulation.RoadSystem
             ResetValues();
             if (roadData != null)
             {
-                ActivateRoad(roadData.RoadName);
+                ActivateRoad(roadData.RoadId);
+            }
+        }
+
+        public void Undo()
+        {
+            UndoLastConstruction();
+        }
+
+        private bool isDemolishActive = false;
+        private Vector3 pointerDemolishPosition;
+
+        public void ToggleDemolish(bool active)
+        {
+            isDemolishActive = active;
+            if (!active)
+            {
+                SetPointerDemolishActive(false);
             }
         }
 
@@ -86,6 +154,7 @@ namespace PortSimulation.RoadSystem
             DeactivateRoad();
             ResetValues();
             SetPointerActive(false);
+            ToggleDemolish(false); // Ensure demolish is off
         }
     }
 }

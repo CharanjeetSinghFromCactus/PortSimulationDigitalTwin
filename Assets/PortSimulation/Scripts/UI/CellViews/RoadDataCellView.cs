@@ -12,14 +12,16 @@ namespace PortSimulation.UI.CellViews
         private RoadData _roadData;
         [SerializeField] private Image roadIcon;
         [SerializeField] private TMP_Text roadNameText;
-        
+
         private IObserverManager observerManager;
         private IObserver<string> setRoadTypeObserver;
+        private IObserver<bool> canBuildRoadObserver;
 
         private void OnEnable()
         {
             observerManager = ServiceLocatorFramework.ServiceLocator.Current.Get<IObserverManager>();
             setRoadTypeObserver = observerManager.GetOrCreateObserver<string>(ObserverNameConstants.SetRoadType);
+            canBuildRoadObserver = observerManager.GetOrCreateObserver<bool>(ObserverNameConstants.CanBuildRoad);
         }
 
         private void OnDisable()
@@ -42,6 +44,7 @@ namespace PortSimulation.UI.CellViews
                 // We send the RoadName string, effectively selecting it.
                 // RoadManager listens to this and picks the data from container.
                 setRoadTypeObserver.Notify(_roadData.RoadName);
+                canBuildRoadObserver.Notify(true);
             }
         }
     }

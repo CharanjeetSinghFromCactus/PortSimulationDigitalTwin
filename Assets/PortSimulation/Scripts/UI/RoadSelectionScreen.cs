@@ -1,5 +1,7 @@
 using EnhancedUI.EnhancedScroller;
 using PortSimulation.RoadSystem.Data;
+using DataBindingFramework;
+using ServiceLocatorFramework;
 using PortSimulation.UI.CellViews;
 using UISystem;
 using UnityEngine;
@@ -12,15 +14,53 @@ namespace PortSimulation.UI
         [SerializeField] private RoadDataCellView roadDataCellViewPrefab;
         [SerializeField] private RoadDataContainer roadDataContainer;
 
+        private IObserver<bool> canBuildRoadObserver;
+        private IObserver<string> undoRoadObserver;
+        private IObserver<bool> demolishRoadObserver;
+
+        private bool isDemolishActive = false;
+
+        private void Start()
+        {
+            var observerManager = ServiceLocatorFramework.ServiceLocator.Current.Get<DataBindingFramework.IObserverManager>();
+            canBuildRoadObserver = observerManager.GetOrCreateObserver<bool>(ObserverNameConstants.CanBuildRoad);
+            undoRoadObserver = observerManager.GetOrCreateObserver<string>(ObserverNameConstants.UndoRoad);
+            demolishRoadObserver = observerManager.GetOrCreateObserver<bool>(ObserverNameConstants.DemolishRoad);
+            
+        }
+
+        public void OnStopClicked()
+        {
+            canBuildRoadObserver?.Notify(false);
+            // Also reset demolish mode on stop
+            isDemolishActive = false;
+            demolishRoadObserver?.Notify(false);
+        }
+
+        public void OnUndoClicked()
+        {
+            undoRoadObserver?.Notify("");
+        }
+
+        public void OnDemolishClicked()
+        {
+            isDemolishActive = !isDemolishActive;
+            demolishRoadObserver?.Notify(isDemolishActive);
+
+            // Optional: Visual change for button
+        }
+
         public override void Show()
         {
             scroller.Delegate = this;
             base.Show();
             scroller.ReloadData();
+            // canBuildRoadObserver?.Notify(true); -> Now handled by cell click
         }
 
         public override void Hide()
         {
+            canBuildRoadObserver?.Notify(false);
             base.Hide();
         }
 
@@ -40,10 +80,12 @@ namespace PortSimulation.UI
             cellView.SetData(roadDataContainer.Roads[dataIndex]);
             return cellView;
         }
-        
+
         public void OnBackButtonClick()
         {
-             UISystem.ViewController.Instance.ChangeScreen(ScreenName.PlacementCategoryScreen); // Example fallback
+            OnStopClicked();
+            UISystem.ViewController.Instance.ChangeScreen(ScreenName.HomeScreen); // Example fallback
         }
+        
     }
 }

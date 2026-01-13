@@ -13,16 +13,16 @@ namespace PortSimulation.RoadSystem.Data
             return Array.Find(Roads, x => x.RoadName == roadName);
         }
 
-        [ContextMenu("Add Default Data")]
+
         [ContextMenu("Add Default Data")]
         public void AddDefaultData()
         {
             Roads = new RoadData[]
             {
-                new RoadData("One Way", 0),
-                new RoadData("Two Way", 1),
-                new RoadData("Four Way", 2),
-                new RoadData("Six Way", 3)
+                new RoadData("One Way", "One-Way Asphalt"),
+                new RoadData("Two Way", "Side Street Asphalt"),
+                new RoadData("Four Way", "Boulevard Asphalt"),
+                new RoadData("Six Way", "Main Street Asphalt")
             };
         }
     }
@@ -31,11 +31,11 @@ namespace PortSimulation.RoadSystem.Data
     public class RoadData
     {
         [field: SerializeField] public string RoadName { get; private set; }
-        [field: SerializeField] public int RoadId { get; private set; } // The ID used by RoadConstructor
+        [field: SerializeField] public string RoadId { get; private set; } // The ID used by RoadConstructor
         [field: SerializeField] public Sprite RoadIcon { get; private set; }
         [field: SerializeField] public string Description { get; private set; }
 
-        public RoadData(string name, int id)
+        public RoadData(string name, string id)
         {
             RoadName = name;
             RoadId = id;

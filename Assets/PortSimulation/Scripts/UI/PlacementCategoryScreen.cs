@@ -44,5 +44,10 @@ namespace PortSimulation.UI
             cellView.SetData(placementDataContainer.PlacementCategories[dataIndex]);
             return cellView;
         }
+
+        public void OnBackButtonClick()
+        {
+            UISystem.ViewController.Instance.ChangeScreen(ScreenName.HomeScreen); // Example fallback
+        }
     }
 }

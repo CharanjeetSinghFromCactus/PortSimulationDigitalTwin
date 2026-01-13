@@ -15,6 +15,8 @@ namespace PortSimulation
         public const string DeleteObject = "DeleteObject";
         public const string SetRoadType = "SetRoadType";
         public const string CanBuildRoad = "CanBuildRoad";
+        public const string UndoRoad = "UndoRoad";
+        public const string DemolishRoad = "DemolishRoad";
     }
 
     public static class ToolNameConstants
@@ -23,6 +25,7 @@ namespace PortSimulation
         public const string PlacementPanToolName = "PlacementPanTool";
         public const string PlacementRotateToolName = "PlacementRotateTool";
         public const string PlacementScaleToolName = "PlacementScaleTool";
+        public const string RoadConstructionToolName = "RoadConstructionTool";
     }
 
     public static class PropertyNameConstants

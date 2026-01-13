@@ -2,6 +2,7 @@ using DataBindingFramework;
 using UISystem;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using PortSimulation.Managers;
 
 namespace PortSimulation.RoadSystem
 {
@@ -10,13 +11,23 @@ namespace PortSimulation.RoadSystem
         [SerializeField] private RoadBuilderScript roadBuilder;
         [SerializeField] private LayerMask roadLayer; // For future raycasting if needed separately
         [SerializeField] private Camera mainCamera;
+        [SerializeField] private Transform cameraTarget;
         [SerializeField] private PortSimulation.RoadSystem.Data.RoadDataContainer roadDataContainer;
 
         private IObserverManager _observerManager;
         private DataBindingFramework.IObserver<string> setRoadTypeObserver;
         private DataBindingFramework.IObserver<bool> canBuildRoadObserver;
+        private DataBindingFramework.IObserver<string> undoRoadObserver;
+        private DataBindingFramework.IObserver<bool> demolishRoadObserver;
 
         private bool isBuilding = false;
+
+        private void Start()
+        {
+            var tool = new Tools.RoadConstructionTool(roadBuilder, mainCamera, cameraTarget);
+            var toolManager = ServiceLocatorFramework.ServiceLocator.Current.Get<Managers.ToolManager>();
+            toolManager?.RegisterTool(ToolNameConstants.RoadConstructionToolName, tool);
+        }
 
         private void Awake()
         {
@@ -32,30 +43,44 @@ namespace PortSimulation.RoadSystem
 
             canBuildRoadObserver = _observerManager.GetOrCreateObserver<bool>(ObserverNameConstants.CanBuildRoad);
             canBuildRoadObserver.Bind(this, OnCanBuildRoad);
+
+            undoRoadObserver = _observerManager.GetOrCreateObserver<string>(ObserverNameConstants.UndoRoad);
+            undoRoadObserver.Bind(this, OnUndoRoad);
+
+            demolishRoadObserver = _observerManager.GetOrCreateObserver<bool>(ObserverNameConstants.DemolishRoad);
+            demolishRoadObserver.Bind(this, OnDemolishRoad);
         }
 
         private void OnDisable()
         {
             setRoadTypeObserver.Unbind(OnSetRoadType);
             canBuildRoadObserver.Unbind(OnCanBuildRoad);
+            undoRoadObserver?.Unbind(OnUndoRoad);
+            demolishRoadObserver?.Unbind(OnDemolishRoad);
 
             _observerManager.RemoveObserver(ObserverNameConstants.SetRoadType);
             _observerManager.RemoveObserver(ObserverNameConstants.CanBuildRoad);
+            // We generally don't remove the observers themselves if they might be used elsewhere, 
+            // but for consistency with existing code:
+            _observerManager.RemoveObserver(ObserverNameConstants.UndoRoad);
+            _observerManager.RemoveObserver(ObserverNameConstants.DemolishRoad);
+
+            var toolManager = ServiceLocatorFramework.ServiceLocator.Current.Get<Managers.ToolManager>();
+            toolManager?.UnregisterTool(ToolNameConstants.RoadConstructionToolName);
 
             ServiceLocatorFramework.ServiceLocator.Current.Unregister<RoadManager>();
         }
 
-        private void Update()
+
+
+        private void OnUndoRoad(string _)
         {
-            if (!isBuilding) return;
-            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
+            roadBuilder.Undo();
+        }
 
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            bool isMousePressed = Input.GetMouseButtonDown(0);
-            bool isShiftPressed = Input.GetKey(KeyCode.LeftShift);
-            bool isCtrlPressed = Input.GetKey(KeyCode.LeftControl);
-
-            roadBuilder.HandleUpdate(ray, isMousePressed, isShiftPressed, isCtrlPressed);
+        private void OnDemolishRoad(bool active)
+        {
+            roadBuilder.ToggleDemolish(active);
         }
 
         private void OnSetRoadType(string roadType)
@@ -70,9 +95,17 @@ namespace PortSimulation.RoadSystem
         private void OnCanBuildRoad(bool canBuild)
         {
             isBuilding = canBuild;
-            if (!isBuilding)
+            var toolManager = ServiceLocatorFramework.ServiceLocator.Current.Get<Managers.ToolManager>();
+
+            if (isBuilding)
+            {
+                toolManager?.ActivateTool(ToolNameConstants.RoadConstructionToolName);
+            }
+            else
             {
                 roadBuilder.StopBuilding();
+                // Revert to PanTool or default
+                toolManager?.ActivateTool(ToolNameConstants.PanToolName);
             }
         }
     }

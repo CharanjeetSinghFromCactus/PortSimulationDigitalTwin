@@ -219,10 +219,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 28
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 10
   m_fontSizeMax: 25
   m_fontStyle: 0
@@ -383,8 +383,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PortSimulation.UI.PlacementItemCellView, Assembly-CSharp
+      - m_Target: {fileID: 328996200220444513}
+        m_TargetAssemblyTypeName: PortSimulation.UI.CellViews.RoadDataCellView, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
