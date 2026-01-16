@@ -26,7 +26,18 @@ namespace PortSimulation.UI
             canBuildRoadObserver = observerManager.GetOrCreateObserver<bool>(ObserverNameConstants.CanBuildRoad);
             undoRoadObserver = observerManager.GetOrCreateObserver<string>(ObserverNameConstants.UndoRoad);
             demolishRoadObserver = observerManager.GetOrCreateObserver<bool>(ObserverNameConstants.DemolishRoad);
-            
+            saveRoadObserver = observerManager.GetOrCreateObserver<string>(ObserverNameConstants.SaveRoad);
+
+        }
+
+        private IObserver<string> saveRoadObserver;
+
+        public void DISCLAIMED() // Placeholder to match the pattern, user will assign button event
+        { }
+
+        public void OnSaveClicked()
+        {
+            saveRoadObserver?.Notify("");
         }
 
         public void OnStopClicked()
@@ -86,6 +97,6 @@ namespace PortSimulation.UI
             OnStopClicked();
             UISystem.ViewController.Instance.ChangeScreen(ScreenName.HomeScreen); // Example fallback
         }
-        
+
     }
 }

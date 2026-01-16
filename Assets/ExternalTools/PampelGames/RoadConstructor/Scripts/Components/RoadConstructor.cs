@@ -436,7 +436,7 @@ namespace PampelGames.RoadConstructor
         /// </summary>
         public Vector3 SnapPosition(float radius, Vector3 position, out Overlap overlap)
         {
-            var positionFloat3 = (float3) position;
+            var positionFloat3 = (float3)position;
             ApplyGridPositions(ref positionFloat3, ref positionFloat3);
 
             float3 newPosition = positionFloat3;
@@ -907,7 +907,7 @@ namespace PampelGames.RoadConstructor
         public void ConstructPreviewRoads(Transform parent, float roadLength, bool spawnObjects, bool elevated)
         {
             Initialize();
-            
+
             var roadSettings = new RoadSettings();
             var expandedRoads = new List<Road>(_RoadSet.roads.Where(road => road._editorVisible));
 
@@ -945,7 +945,7 @@ namespace PampelGames.RoadConstructor
                 roadObject.previewObject = true;
 
                 if (spawnObjects)
-                    SpawnObjectUtility.SpawnObjects(_RoadSet.spawnObjectPresets, new List<RoadObject> {roadObject}, new List<IntersectionObject>(),
+                    SpawnObjectUtility.SpawnObjects(_RoadSet.spawnObjectPresets, new List<RoadObject> { roadObject }, new List<IntersectionObject>(),
                         sceneData, new List<int>(), new List<int>());
 
                 roadObject.transform.SetParent(parent);
@@ -982,7 +982,7 @@ namespace PampelGames.RoadConstructor
                 intersection.previewObject = true;
                 intersection.transform.SetParent(parent);
             }
-            
+
             Uninitialize();
         }
 
@@ -1053,9 +1053,9 @@ namespace PampelGames.RoadConstructor
                 var _intersectionConnections = _road.IntersectionConnections;
 
                 for (var j = 0; j < _roadConnections.Count; j++)
-                for (var k = _intersectionConnections.Count - 1; k >= 0; k--)
-                    if (_roadConnections[j].IntersectionConnections.Contains(_intersectionConnections[k]))
-                        DemolishSeamless(new List<IntersectionObject> {_intersectionConnections[k]}, new List<RoadObject>());
+                    for (var k = _intersectionConnections.Count - 1; k >= 0; k--)
+                        if (_roadConnections[j].IntersectionConnections.Contains(_intersectionConnections[k]))
+                            DemolishSeamless(new List<IntersectionObject> { _intersectionConnections[k] }, new List<RoadObject>());
             }
 
             for (var i = 0; i < constructionObjects.newIntersections.Count; i++) // Intersections don't have intersection connections
@@ -1065,7 +1065,7 @@ namespace PampelGames.RoadConstructor
                 if (_intersectionConnections.Count == 0) continue;
 
                 for (var j = _intersectionConnections.Count - 1; j >= 0; j--)
-                    DemolishSeamless(new List<IntersectionObject> {_intersectionConnections[j]}, new List<RoadObject>());
+                    DemolishSeamless(new List<IntersectionObject> { _intersectionConnections[j] }, new List<RoadObject>());
             }
 
             /********************************************************************************************************************************/
@@ -1199,7 +1199,7 @@ namespace PampelGames.RoadConstructor
                 out var roadObjectClass, out var overlap01, out var overlap02);
 
             var constructionFails = RoadValidation.ValidateRoad(componentSettings, roadData, roadObjectClass.roadDescr,
-                roadObjectClass.spline, sceneData, new List<Overlap> {overlap01, overlap02}, true);
+                roadObjectClass.spline, sceneData, new List<Overlap> { overlap01, overlap02 }, true);
 
             var roadObject = RoadCreation.CreateRoad(roadDescr, roadObjectClass.spline, roadData.elevated, false, 1f);
 
@@ -1326,7 +1326,7 @@ namespace PampelGames.RoadConstructor
                 out var roadObjectClass, out var overlap01, out var overlap02);
 
             var constructionFails = RoadValidation.ValidateRoad(componentSettings, roadData, roadObjectClass.roadDescr,
-                roadObjectClass.spline, sceneData, new List<Overlap> {overlap01, overlap02}, false);
+                roadObjectClass.spline, sceneData, new List<Overlap> { overlap01, overlap02 }, false);
 
             if ((!overlap01.exists || overlap01.overlapType != OverlapType.Road) &&
                 (!overlap02.exists || overlap02.overlapType != OverlapType.Road))
@@ -1411,9 +1411,9 @@ namespace PampelGames.RoadConstructor
                     combinedNewObjects[i].CreateTerrainUpdateSplines(out var terrainSplines, out var terrainWidths, out var checkHeight);
 
                     for (var j = 0; j < terrainSplines.Count; j++)
-                    for (var k = 0; k < componentSettings.terrains.Count; k++)
-                        TerrainUpdate.UpdateTerrainInternal(componentSettings.terrains[k], terrainUpdateSettings, terrainSplines[j], terrainWidths[j],
-                            checkHeight);
+                        for (var k = 0; k < componentSettings.terrains.Count; k++)
+                            TerrainUpdate.UpdateTerrainInternal(componentSettings.terrains[k], terrainUpdateSettings, terrainSplines[j], terrainWidths[j],
+                                checkHeight);
                 }
             }
 
@@ -1434,8 +1434,8 @@ namespace PampelGames.RoadConstructor
                 for (var i = 0; i < newSceneObjects.Count; i++) TrafficUtility.AddTrafficComponent(newSceneObjects[i]);
                 for (var i = 0; i < newSceneObjects.Count; i++) newSceneObjects[i].traffic.trafficLanes = newSceneObjects[i].CreateTrafficLanes();
                 for (var i = 0; i < newSceneObjects.Count; i++)
-                for (var j = 0; j < newSceneObjects[i].traffic.trafficLanes.Count; j++)
-                    newSceneObjects[i].traffic.splineContainer.AddSpline(newSceneObjects[i].traffic.trafficLanes[j].spline);
+                    for (var j = 0; j < newSceneObjects[i].traffic.trafficLanes.Count; j++)
+                        newSceneObjects[i].traffic.splineContainer.AddSpline(newSceneObjects[i].traffic.trafficLanes[j].spline);
 
                 if (componentSettings.updateWaypoints)
                 {
@@ -1804,9 +1804,9 @@ namespace PampelGames.RoadConstructor
                     combinedDemolishObjects[i].CreateTerrainUpdateSplines(out var terrainSplines, out var terrainWidths, out var checkHeight);
 
                     for (var j = 0; j < terrainSplines.Count; j++)
-                    for (var k = 0; k < componentSettings.terrains.Count(); k++)
-                        TerrainUpdate.UpdateTerrainInternal(componentSettings.terrains[k], terrainUpdateSettings, terrainSplines[j], terrainWidths[j],
-                            checkHeight, true, undoTerrains[k]);
+                        for (var k = 0; k < componentSettings.terrains.Count(); k++)
+                            TerrainUpdate.UpdateTerrainInternal(componentSettings.terrains[k], terrainUpdateSettings, terrainSplines[j], terrainWidths[j],
+                                checkHeight, true, undoTerrains[k]);
                 }
             }
 
@@ -1833,9 +1833,9 @@ namespace PampelGames.RoadConstructor
                     combinedNewObjects[i].CreateTerrainUpdateSplines(out var terrainSplines, out var terrainWidths, out var checkHeight);
 
                     for (var j = 0; j < terrainSplines.Count; j++)
-                    for (var k = 0; k < componentSettings.terrains.Count(); k++)
-                        TerrainUpdate.UpdateTerrainInternal(componentSettings.terrains[k], terrainUpdateSettings, terrainSplines[j], terrainWidths[j],
-                            checkHeight, true, undoTerrains[k]);
+                        for (var k = 0; k < componentSettings.terrains.Count(); k++)
+                            TerrainUpdate.UpdateTerrainInternal(componentSettings.terrains[k], terrainUpdateSettings, terrainSplines[j], terrainWidths[j],
+                                checkHeight, true, undoTerrains[k]);
                 }
             }
             /********************************************************************************************************************************/

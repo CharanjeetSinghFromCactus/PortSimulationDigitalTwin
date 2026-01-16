@@ -17,6 +17,7 @@ namespace PortSimulation
         public const string CanBuildRoad = "CanBuildRoad";
         public const string UndoRoad = "UndoRoad";
         public const string DemolishRoad = "DemolishRoad";
+        public const string SaveRoad = "SaveRoad";
     }
 
     public static class ToolNameConstants

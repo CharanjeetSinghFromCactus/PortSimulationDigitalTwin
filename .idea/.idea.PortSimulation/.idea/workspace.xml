@@ -6,22 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="229be602-365d-45a9-8e9d-353ec1ae0e36" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PortSimulation/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PortSimulation/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Materials/Blue.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Materials/Blue.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Materials/Green.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Materials/Green.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Materials/Wand Cursor.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Materials/Wand Cursor.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Models/Table/M_DomePlastic.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Models/Table/M_DomePlastic.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Models/Table/M_EmmisiveStrips.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Models/Table/M_EmmisiveStrips.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Models/Table/M_TableLegs.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Models/Table/M_TableLegs.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Models/Table/M_TableLowerPlastic.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Models/Table/M_TableLowerPlastic.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Models/Table/M_TableMetalic.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Models/Table/M_TableMetalic.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Models/Table/M_TableTop.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Models/Table/M_TableTop.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Models/Table/Materials/defaultMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Models/Table/Materials/defaultMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Models/Wall/Frame.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Models/Wall/Frame.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Models/Wall/Mount.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Models/Wall/Mount.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Prefabs/HoloDeviceConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalTools/AxiomHoloDevice/Prefabs/HoloDeviceConfig.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ExternalTools/PampelGames/RoadConstructor/Scripts/Components/RoadConstructor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExternalTools/PampelGames/RoadConstructor/Scripts/Components/RoadConstructor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/PortSimulation/Scenes/LidarScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PortSimulation/Scenes/LidarScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PortSimulation/Scenes/LidarSceneHoloTable.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PortSimulation/Scenes/LidarSceneHoloTable.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PortSimulation/Scripts/Constants/Constants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PortSimulation/Scripts/Constants/Constants.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PortSimulation/Scripts/Models/RoadSystem/Managers/RoadManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PortSimulation/Scripts/Models/RoadSystem/Managers/RoadManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PortSimulation/Scripts/UI/RoadSelectionScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PortSimulation/Scripts/UI/RoadSelectionScreen.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/build_info" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/build_info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sclog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/sclog.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,7 +116,7 @@
       <updated>1768290352557</updated>
       <workItem from="1768290355388" duration="16174000" />
       <workItem from="1768540455077" duration="2670000" />
-      <workItem from="1768556916936" duration="741000" />
+      <workItem from="1768556916936" duration="1937000" />
     </task>
     <servers />
   </component>

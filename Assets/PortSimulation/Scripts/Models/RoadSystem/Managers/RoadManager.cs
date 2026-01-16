@@ -3,6 +3,7 @@ using UISystem;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using PortSimulation.Managers;
+using PortSimulation.RoadSystem.Data;
 
 namespace PortSimulation.RoadSystem
 {
@@ -27,6 +28,8 @@ namespace PortSimulation.RoadSystem
             var tool = new Tools.RoadConstructionTool(roadBuilder, mainCamera, cameraTarget);
             var toolManager = ServiceLocatorFramework.ServiceLocator.Current.Get<Managers.ToolManager>();
             toolManager?.RegisterTool(ToolNameConstants.RoadConstructionToolName, tool);
+
+            LoadRoads();
         }
 
         private void Awake()
@@ -49,6 +52,16 @@ namespace PortSimulation.RoadSystem
 
             demolishRoadObserver = _observerManager.GetOrCreateObserver<bool>(ObserverNameConstants.DemolishRoad);
             demolishRoadObserver.Bind(this, OnDemolishRoad);
+
+            saveRoadObserver = _observerManager.GetOrCreateObserver<string>(ObserverNameConstants.SaveRoad);
+            saveRoadObserver.Bind(this, OnSaveRoad);
+        }
+
+        private DataBindingFramework.IObserver<string> saveRoadObserver;
+
+        private void OnSaveRoad(string _)
+        {
+            SaveRoads();
         }
 
         private void OnDisable()
@@ -57,6 +70,7 @@ namespace PortSimulation.RoadSystem
             canBuildRoadObserver.Unbind(OnCanBuildRoad);
             undoRoadObserver?.Unbind(OnUndoRoad);
             demolishRoadObserver?.Unbind(OnDemolishRoad);
+            saveRoadObserver?.Unbind(OnSaveRoad);
 
             _observerManager.RemoveObserver(ObserverNameConstants.SetRoadType);
             _observerManager.RemoveObserver(ObserverNameConstants.CanBuildRoad);
@@ -64,6 +78,7 @@ namespace PortSimulation.RoadSystem
             // but for consistency with existing code:
             _observerManager.RemoveObserver(ObserverNameConstants.UndoRoad);
             _observerManager.RemoveObserver(ObserverNameConstants.DemolishRoad);
+            _observerManager.RemoveObserver(ObserverNameConstants.SaveRoad);
 
             var toolManager = ServiceLocatorFramework.ServiceLocator.Current.Get<Managers.ToolManager>();
             toolManager?.UnregisterTool(ToolNameConstants.RoadConstructionToolName);
@@ -107,6 +122,72 @@ namespace PortSimulation.RoadSystem
                 // Revert to PanTool or default
                 toolManager?.ActivateTool(ToolNameConstants.PanToolName);
             }
+        }
+
+        [ContextMenu("Save Roads")]
+        public void SaveRoads()
+        {
+            var saveData = new RoadSystemSaveData();
+            var constructor = roadBuilder.roadConstructor;
+
+            foreach (var road in constructor.GetRoads())
+            {
+                var serializedRoad = (PampelGames.RoadConstructor.SerializedRoad)road.Serialize();
+                saveData.roads.Add(new SavedRoad(serializedRoad));
+            }
+
+            foreach (var intersection in constructor.GetIntersections())
+            {
+                if (intersection is PampelGames.RoadConstructor.RoundaboutObject roundabout)
+                {
+                    saveData.roundabouts.Add((PampelGames.RoadConstructor.SerializedRoundabout)roundabout.Serialize());
+                }
+                else
+                {
+                    saveData.intersections.Add((PampelGames.RoadConstructor.SerializedIntersection)intersection.Serialize());
+                }
+            }
+
+            string json = JsonUtility.ToJson(saveData, true);
+            var path = System.IO.Path.Combine(Application.persistentDataPath, "road_save.json");
+            System.IO.File.WriteAllText(path, json);
+            Debug.Log($"Roads saved to {path}");
+        }
+
+        [ContextMenu("Load Roads")]
+        public void LoadRoads()
+        {
+            var path = System.IO.Path.Combine(Application.persistentDataPath, "road_save.json");
+            if (!System.IO.File.Exists(path))
+            {
+                Debug.LogWarning("No save file found.");
+                return;
+            }
+
+            string json = System.IO.File.ReadAllText(path);
+            var saveData = JsonUtility.FromJson<RoadSystemSaveData>(json);
+
+            var sceneObjects = new System.Collections.Generic.List<PampelGames.RoadConstructor.SerializedSceneObject>();
+
+            foreach (var savedRoad in saveData.roads)
+            {
+                sceneObjects.Add(savedRoad.ToSerializedRoad());
+            }
+
+            sceneObjects.AddRange(saveData.roundabouts);
+            sceneObjects.AddRange(saveData.intersections);
+
+            var constructor = roadBuilder.roadConstructor;
+            try
+            {
+                constructor.SetSerializableRoadSystem(sceneObjects);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"Error loading roads: {e.Message}");
+            }
+
+            Debug.Log("Roads loaded.");
         }
     }
 }

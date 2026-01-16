@@ -23,7 +23,7 @@ MonoBehaviour:
   RemoteDisplay: 1
   AutoAdjustResolution: 1
   StartingControlMode: 5
-  StartingControlModeSpeed: 1
+  StartingControlModeSpeed: 500
   ControlModeButton: 1
   AddAudioListeners: 1
   SmoothTrackedPoints: 1
@@ -31,11 +31,11 @@ MonoBehaviour:
   VRPNOverTCP: 0
   ShowUserLasers: 1
   DebugSurfaceView: -1
-  EnableDebugUserController: 0
+  EnableDebugUserController: 1
   DebugUserContollerTarget: 0
   UserContollerSimulateDevice: 1
   DebugUserViewEmulationPosition: 0
-  DebugUserViewHeight: 1.6
+  DebugUserViewHeight: 10
   AlwaysRender: 1
   OnlyRenderUser1: 1
   HDRCompensation: 0
